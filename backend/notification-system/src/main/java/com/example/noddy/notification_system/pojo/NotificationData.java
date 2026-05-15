@@ -103,4 +103,10 @@ public class NotificationData {
     public void setMessages(List<MessageData> messages) {
         this.messages = messages;
     }
+
+    // Helper method
+    public void addMessage(MessageData message) {
+        messages.add(message);
+        message.setNotification(this);
+    }
 }
