@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@source "./app/**/*.{js,ts,jsx,tsx}";
+@source "./src/**/*.{js,ts,jsx,tsx}";
+@source "./components/**/*.{js,ts,jsx,tsx}";
+
+@theme {
+
+  --font-sans: var(--jakartaSans-font);
+  --font-sora: var(--soraSans-font);
+  --font-code: var(--firaCode-font);
+  --font-emoji: Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+
+  --color-darkText: #E4E6EB;
+  --color-dark: #121212;
+  --color-light: #fafafa;
+
+}
+
+:root {
+  --color-dark: #121212;
+  --color-light: #fafafa;
+}
+
+html {
+  scroll-behavior: smooth;
+  letter-spacing: 0.3px;
+}
+
+body {
+  background: radial-gradient(
+    ellipse 60% 50% at 50% -30%,
+    rgb(45 212 191 / 15%) 0%,
+    rgb(8 0 0 / 0%)
+  );
+}
+
+input,
+textarea,
+button,
+select,
+div,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+#nprogress .bar {
+  background: #15b8a6 !important;
+  height: 2px !important;
+  z-index: 9999999 !important;
+  position: fixed !important;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 3px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  border: 2px solid rgb(212 212 212);
+  background: rgb(82 82 82);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgb(163 163 163);
+}
+
+
+
+/*:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+*/
