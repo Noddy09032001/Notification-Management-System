@@ -45,13 +45,10 @@ public class RbacServiceImplementation implements RbacService{
             // getting the role permissions based on the role name
             // finding the role id based on the role name
 
-            Set<Optional<RoleData>> roleData = new HashSet<>();
+            Set<RoleData> roleData = new HashSet<>();
 
             for(RoleConstants roles : request.getRole()){
-                Optional<RoleData> role = Optional.of(roleRepository.findByRoleName(roles)
-                        .orElseThrow(() ->
-                                new RuntimeException("Role not found")));
-
+                RoleData role = roleRepository.findByRoleName(roles);
                 roleData.add(role);
             }
 
