@@ -1,4 +1,4 @@
-import Image from "next/image";
+/*import Image from "next/image";
 
 export default function Home() {
   return (
@@ -62,4 +62,10 @@ export default function Home() {
       </main>
     </div>
   );
+} */
+
+import Dashboard from "@/src/modules/dashboard";
+
+export default function Page(){
+  return <Dashboard/>
 }
