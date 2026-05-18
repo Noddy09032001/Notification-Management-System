@@ -1,5 +1,6 @@
 package com.example.noddy.notification_system.pojo;
 
+import com.example.noddy.notification_system.constants.RoleConstants;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -14,7 +15,8 @@ public class RoleData {
     private Long id;
 
     @Column(name = "role_name", unique = true, nullable = false)
-    private String roleName;
+    @Enumerated(EnumType.STRING)
+    private RoleConstants roleName;
 
     @Column(name = "role_description")
     private String roleDescription;
@@ -33,7 +35,7 @@ public class RoleData {
 
     public RoleData(){}
 
-    public RoleData(Long id, String roleName, String roleDescription, Set<PermissionsData> permissions) {
+    public RoleData(Long id, RoleConstants roleName, String roleDescription, Set<PermissionsData> permissions) {
         this.id = id;
         this.roleName = roleName;
         this.roleDescription = roleDescription;
@@ -48,11 +50,11 @@ public class RoleData {
         this.id = id;
     }
 
-    public String getRoleName() {
+    public RoleConstants getRoleName() {
         return roleName;
     }
 
-    public void setRoleName(String roleName) {
+    public void setRoleName(RoleConstants roleName) {
         this.roleName = roleName;
     }
 
