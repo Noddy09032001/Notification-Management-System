@@ -4,6 +4,8 @@ import com.example.noddy.notification_system.constants.RoleConstants;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.Set;
+
 public class CreateUserRequest {
 
     @NotBlank(message = "username is required")
@@ -17,11 +19,11 @@ public class CreateUserRequest {
     private String mobileNumber;
 
     @NotNull(message = "At-least one Role is required")
-    private RoleConstants role;
+    private Set<RoleConstants> role;
 
     public CreateUserRequest(){}
 
-    public CreateUserRequest(String userName, String name, String password, String mobileNumber, RoleConstants role) {
+    public CreateUserRequest(String userName, String name, String password, String mobileNumber, Set<RoleConstants> role) {
         this.userName = userName;
         this.name = name;
         this.password = password;
@@ -61,11 +63,11 @@ public class CreateUserRequest {
         this.mobileNumber = mobileNumber;
     }
 
-    public RoleConstants getRole() {
+    public Set<RoleConstants> getRole() {
         return role;
     }
 
-    public void setRole(RoleConstants role) {
+    public void setRole(Set<RoleConstants> role) {
         this.role = role;
     }
 }
