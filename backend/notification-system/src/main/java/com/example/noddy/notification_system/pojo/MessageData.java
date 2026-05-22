@@ -26,6 +26,8 @@ public class MessageData {
     @Enumerated(EnumType.STRING)
     private MessageStatus status;  // the current status of the message
     private Integer retryCount;  // the number of times the retries happened
+
+    @Column(name = "provider_response", columnDefinition = "TEXT")
     private String providerResponse;
     private LocalDateTime sentAt;  // time at which the message was sent
 
