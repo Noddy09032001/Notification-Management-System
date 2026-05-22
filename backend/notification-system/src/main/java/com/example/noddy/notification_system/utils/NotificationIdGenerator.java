@@ -1,7 +1,10 @@
 package com.example.noddy.notification_system.utils;
 
+import org.springframework.stereotype.Component;
+
 import java.util.UUID;
 
+@Component
 public class NotificationIdGenerator {
     public NotificationIdGenerator(){}
 

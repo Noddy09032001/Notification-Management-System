@@ -1,0 +1,11 @@
+Client sends JWT token
+        ↓
+JwtAuthFilter intercepts request
+        ↓
+JwtService validates token
+        ↓
+Roles + permissions extracted
+        ↓
+Spring Security context updated
+        ↓
+Request allowed/rejected

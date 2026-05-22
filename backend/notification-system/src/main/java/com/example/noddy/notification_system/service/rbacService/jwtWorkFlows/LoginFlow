@@ -1,0 +1,11 @@
+Client sends username/password
+        ↓
+Spring Security authenticates user
+        ↓
+CustomUserDetailsService loads user from DB
+        ↓
+Password checked using BCrypt
+        ↓
+JwtService generates token
+        ↓
+JWT returned to client
