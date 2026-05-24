@@ -11,10 +11,10 @@ import java.util.Properties;
 @Configuration
 public class EmailConfig {
 
-    @Value("${mail.username}")
+    @Value("${spring.mail.username}")
     private String username;
 
-    @Value("${mail.password}")
+    @Value("${spring.mail.password}")
     private String password;
 
     @Bean
@@ -34,6 +34,10 @@ public class EmailConfig {
         properties.put("mail.transport.protocol", "smtp");
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.starttls.required", "true");
+        // Modern TLS
+        properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
+        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         properties.put("mail.debug", "true");
 
         return mailSender;
