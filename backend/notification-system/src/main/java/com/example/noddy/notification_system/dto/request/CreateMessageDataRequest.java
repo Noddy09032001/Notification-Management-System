@@ -1,6 +1,7 @@
 package com.example.noddy.notification_system.dto.request;
 
 import com.example.noddy.notification_system.constants.NotificationChannel;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -11,6 +12,7 @@ public class CreateMessageDataRequest {
     private NotificationChannel channel;
 
     @NotBlank(message = "Recipient is required")
+    @Email(message = "Invalid email format")
     private String recipient;
 
     // Channel-specific content
