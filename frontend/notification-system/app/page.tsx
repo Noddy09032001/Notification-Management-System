@@ -65,7 +65,8 @@ export default function Home() {
 } */
 
 import Dashboard from "@/src/modules/dashboard";
+import Home from "@/src/modules/home";
 
 export default function Page(){
-  return <Dashboard/>
+  return <Home/>
 }

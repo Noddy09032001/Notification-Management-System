@@ -3,6 +3,7 @@ import "./globals.css";
 import Providers from "./providers";
 import { firaCode, jakartaSans, soraSans } from "@/src/common/styles/fonts";
 import Layout from "@/src/common/components/layout";
+import LayoutWrapper from "@/src/common/components/layout/LayoutWrapper";
 
 export default function RootLayout({children,}: {children: React.ReactNode;}) {
   return (
@@ -19,7 +20,7 @@ export default function RootLayout({children,}: {children: React.ReactNode;}) {
       >
         <Providers>
           <ProgressBar />
-          <Layout>{children}</Layout>
+          <LayoutWrapper>{children}</LayoutWrapper>
         </Providers>
       </body>
     </html>
