@@ -27,11 +27,11 @@ const iconSize = 20;
 export const MENU_ITEMS: MenuItemProps[] = [
   {
     title: 'Dashboard',
-    href: '/',
+    href: '/dashboard',
     icon: <FiLayout size={iconSize} />,
     isShow: true,
     isExternal: false,
-    eventName: 'Pages: Home',
+    eventName: 'Pages: Dashboard',
     type: 'Pages',
   },
   {
