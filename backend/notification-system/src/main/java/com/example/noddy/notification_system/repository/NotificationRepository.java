@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface NotificationRepository extends JpaRepository<NotificationData, Long> {
 
     // Find notification using external message id
-    Optional<NotificationData> findByMessageId(String messageId);
+    //Optional<NotificationData> findByMessageId(String messageId);
 }

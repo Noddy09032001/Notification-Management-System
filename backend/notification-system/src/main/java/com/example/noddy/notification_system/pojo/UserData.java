@@ -19,7 +19,7 @@ public class UserData implements UserDetails {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String userName;   // the username for the given user
+    private String username;   // the username for the given user
     private String name;   // the complete name for the user
 
     @Column(nullable = false)
@@ -41,9 +41,9 @@ public class UserData implements UserDetails {
         this.roles.add(role);
     }
 
-    public UserData(Long id, String userName, String name, String password, String mobileNumber, LocalDateTime createdOn, LocalDateTime modifiedOn, Set<RoleData> roles) {
+    public UserData(Long id, String username, String name, String password, String mobileNumber, LocalDateTime createdOn, LocalDateTime modifiedOn, Set<RoleData> roles) {
         this.id = id;
-        this.userName = userName;
+        this.username = username;
         this.name = name;
         this.password = password;
         this.mobileNumber = mobileNumber;
@@ -62,12 +62,8 @@ public class UserData implements UserDetails {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName() {

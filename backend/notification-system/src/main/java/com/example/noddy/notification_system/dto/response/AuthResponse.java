@@ -5,15 +5,15 @@ import java.util.List;
 public class AuthResponse {
 
     private String token;
-    private String userName;
+    private String username;
     private List<String> roles;
     private List<String> permissions;
 
     public AuthResponse(){}
 
-    public AuthResponse(String token, String userName, List<String> roles, List<String> permissions) {
+    public AuthResponse(String token, String username, List<String> roles, List<String> permissions) {
         this.token = token;
-        this.userName = userName;
+        this.username = username;
         this.roles = roles;
         this.permissions = permissions;
     }
@@ -26,12 +26,12 @@ public class AuthResponse {
         this.token = token;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public List<String> getRoles() {
