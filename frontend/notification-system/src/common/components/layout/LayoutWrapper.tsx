@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Layout from "."
+import { usePathname } from "next/navigation";
 
 type Props = {
     children: React.ReactNode;
@@ -9,29 +10,31 @@ type Props = {
 
 const LayoutWrapper = ({children,}: Props) => {
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
+    const pathname = usePathname();
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsAuthenticated(!!token);
-    setLoading(false);
-  }, []);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [loading, setLoading] = useState(true);
 
-  // Prevent hydration mismatch
-  if (loading) return null;
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setIsAuthenticated(!!token);
+        setLoading(false);
+    }, [pathname]);
 
-  // If logged in -> show dashboard layout
-  if (isAuthenticated) {
-    return (
-      <Layout>
-        {children}
-      </Layout>
-    );
-  }
+    // Prevent hydration mismatch
+    if (loading) return null;
 
-  // Else -> show login page only
-  return <>{children}</>;
+    // If logged in -> show dashboard layout
+    if (isAuthenticated) {
+        return (
+        <Layout>
+            {children}
+        </Layout>
+        );
+    }
+
+    // Else -> show login page only
+    return <>{children}</>;
 };
 
 export default LayoutWrapper;
