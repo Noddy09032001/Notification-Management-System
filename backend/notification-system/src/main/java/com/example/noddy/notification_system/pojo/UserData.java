@@ -85,7 +85,7 @@ public class UserData implements UserDetails {
 
     @Override
     public String getUsername() {
-        return "";
+        return username;
     }
 
     public void setPassword(String password) {
