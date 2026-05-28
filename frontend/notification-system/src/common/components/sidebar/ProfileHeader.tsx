@@ -12,10 +12,10 @@ interface ProfileHeaderProps {
 }
 
 const ProfileHeader = ({ expandMenu, imageSize }: ProfileHeaderProps) => {
-  const userRole: string[] = JSON.parse(localStorage.getItem("roles") || "[]")
-  const currentRole = userRole[0]
+  const userRole: string[] = JSON.parse(localStorage.getItem("roles") || "[]")    // getting the list of the roles from the local storage
+  const currentRole = userRole[0]    // getting the current role
 
-  const username: any = localStorage.getItem("username")
+  const username: any = localStorage.getItem("username")   // getting the username from the local storage 
   
 
   return (

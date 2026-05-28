@@ -1,4 +1,21 @@
+'use client'
+import { useRouter } from "next/navigation";
+
 const Confirmation = () => {
+    const router = useRouter()
+
+    // on clicking of the cancel button
+    const handleCancel = () => {
+        router.replace("/dashboard")
+    }
+
+    // on clicking of the log out button
+    const handleLogout = () => {
+        // clear the local storage and redirect to the login 
+        localStorage.clear()
+        router.replace("/")
+    }
+
     return (
         <div className="min-h-screen flex items-center justify-center px-4">
             <div className="w-full rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xl p-8">
@@ -18,12 +35,14 @@ const Confirmation = () => {
                 <div className="flex gap-4 mt-8">
                     <button
                         className="w-full py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all duration-200 cursor-pointer"
+                        onClick={handleCancel}
                     >
                         Stay Logged In
                     </button>
 
                     <button
                         className="w-full py-3 rounded-xl bg-red-500 text-white font-medium hover:bg-red-600 transition-all duration-200 shadow-lg shadow-red-500/20 cursor-pointer"
+                        onClick={handleLogout}
                     >
                         Logout
                     </button>
