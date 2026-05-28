@@ -12,6 +12,12 @@ interface ProfileHeaderProps {
 }
 
 const ProfileHeader = ({ expandMenu, imageSize }: ProfileHeaderProps) => {
+  const userRole: string[] = JSON.parse(localStorage.getItem("roles") || "[]")
+  const currentRole = userRole[0]
+
+  const username: any = localStorage.getItem("username")
+  
+
   return (
     <div
       className={clsx(
@@ -31,16 +37,19 @@ const ProfileHeader = ({ expandMenu, imageSize }: ProfileHeaderProps) => {
       />
       <div className='flex gap-2 items-center mt-1 lg:mt-4'>
         <Link href='/' passHref>
-          <h2 className='flex-grow text-lg lg:text-xl font-sora font-medium'>
-            Niranjan Dhokarikar
-          </h2>
+          <div className='flex items-center gap-2 text-lg lg:text-xl font-sora font-medium cursor-pointer'>
+              <h2 className='flex items-center gap-1'>
+                  Hello {username}
+                <span className='ml-1 animate-waving-hand'>👋</span>
+              </h2>
+          </div>
         </Link>
         <Tooltip title='Verified'>
           <VerifiedIcon size={18} className='text-blue-400' />
         </Tooltip>
       </div>
       <div className='hidden lg:flex text-sm font-sora text-neutral-600 hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-400 transition-all duration-300'>
-        @Admin
+        @{currentRole}
       </div>
     </div>
   );
