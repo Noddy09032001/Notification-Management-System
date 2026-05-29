@@ -2,6 +2,7 @@ package com.example.noddy.notification_system.controllers;
 
 import com.example.noddy.notification_system.dto.request.*;
 import com.example.noddy.notification_system.dto.response.AuthResponse;
+import com.example.noddy.notification_system.dto.response.RolePermissionMappingResponse;
 import com.example.noddy.notification_system.service.rbacService.RbacService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ public class RbacSettingsController {
 
     @PostMapping("/role-permissions")
     public ResponseEntity<?> createRolePermissionMappings(@Valid @RequestBody List<RolePermissionMappingRequest> request) throws Exception{
-        rbacService.createRolePermissionsMapping(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Roles and Permissions mapped successfully");
+        List<RolePermissionMappingResponse> response = rbacService.createRolePermissionsMapping(request);
+        return ResponseEntity.ok(response);
     }
 }
