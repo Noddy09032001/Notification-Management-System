@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/auth")
 public class RbacSettingsController {
@@ -37,16 +39,19 @@ public class RbacSettingsController {
 
     @PostMapping("/roles")
     public ResponseEntity<?> createRole(@Valid @RequestBody CreateRoleRequest request) throws Exception{
-        return ResponseEntity.status(HttpStatus.CREATED).body("User created successfully");
+        rbacService.createRole(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Roles created successfully");
     }
 
     @PostMapping("/permissions")
     public ResponseEntity<?> createPermissions(@Valid @RequestBody CreatePermissionRequest request) throws Exception{
-        return ResponseEntity.status(HttpStatus.CREATED).body("User created successfully");
+        rbacService.createPermissions(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Permissions created successfully");
     }
 
     @PostMapping("/role-permissions")
-    public ResponseEntity<?> createRolePermissionMappings(@Valid @RequestBody RolePermissionMappingRequest request) throws Exception{
-        return ResponseEntity.status(HttpStatus.CREATED).body("User created successfully");
+    public ResponseEntity<?> createRolePermissionMappings(@Valid @RequestBody List<RolePermissionMappingRequest> request) throws Exception{
+        rbacService.createRolePermissionsMapping(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Roles and Permissions mapped successfully");
     }
 }

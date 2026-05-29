@@ -1,11 +1,16 @@
 package com.example.noddy.notification_system.service.rbacService;
 
-import com.example.noddy.notification_system.dto.request.AuthUserRequest;
-import com.example.noddy.notification_system.dto.request.CreateUserRequest;
+import com.example.noddy.notification_system.dto.request.*;
 import com.example.noddy.notification_system.dto.response.AuthResponse;
+
+import java.util.List;
 
 public interface RbacService {
 
     void createUser(CreateUserRequest request) throws Exception;
     AuthResponse login(AuthUserRequest request) throws Exception;
+
+    void createRole(CreateRoleRequest request) throws Exception;
+    void createPermissions(CreatePermissionRequest request) throws Exception;
+    void createRolePermissionsMapping(List<RolePermissionMappingRequest> request) throws Exception;
 }

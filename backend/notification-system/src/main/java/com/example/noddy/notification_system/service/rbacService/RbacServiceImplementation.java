@@ -1,8 +1,7 @@
 package com.example.noddy.notification_system.service.rbacService;
 
 import com.example.noddy.notification_system.constants.RoleConstants;
-import com.example.noddy.notification_system.dto.request.AuthUserRequest;
-import com.example.noddy.notification_system.dto.request.CreateUserRequest;
+import com.example.noddy.notification_system.dto.request.*;
 import com.example.noddy.notification_system.dto.response.AuthResponse;
 import com.example.noddy.notification_system.pojo.RoleData;
 import com.example.noddy.notification_system.pojo.UserData;
@@ -100,5 +99,32 @@ public class RbacServiceImplementation implements RbacService{
 
         // returning the response object
         return new AuthResponse(token, user.getUsername(), roles, permissions);
+    }
+
+    @Override
+    public void createRole(CreateRoleRequest request) throws Exception {
+        try{
+
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Override
+    public void createPermissions(CreatePermissionRequest request) throws Exception {
+        try{
+
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Override
+    public void createRolePermissionsMapping(List<RolePermissionMappingRequest> request) throws Exception {
+        try{
+
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 }
