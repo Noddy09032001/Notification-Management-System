@@ -1,8 +1,6 @@
 package com.example.noddy.notification_system.controllers;
 
-import com.example.noddy.notification_system.dto.request.AuthUserRequest;
-import com.example.noddy.notification_system.dto.request.CreateNotificationRequest;
-import com.example.noddy.notification_system.dto.request.CreateUserRequest;
+import com.example.noddy.notification_system.dto.request.*;
 import com.example.noddy.notification_system.dto.response.AuthResponse;
 import com.example.noddy.notification_system.service.rbacService.RbacService;
 import jakarta.validation.Valid;
@@ -34,6 +32,21 @@ public class RbacSettingsController {
     @PostMapping("/register")
     public ResponseEntity<?> signUpUser(@Valid @RequestBody CreateUserRequest request) throws Exception {
         rbacService.createUser(request);    // calling the login method for the same
+        return ResponseEntity.status(HttpStatus.CREATED).body("User created successfully");
+    }
+
+    @PostMapping("/roles")
+    public ResponseEntity<?> createRole(@Valid @RequestBody CreateRoleRequest request) throws Exception{
+        return ResponseEntity.status(HttpStatus.CREATED).body("User created successfully");
+    }
+
+    @PostMapping("/permissions")
+    public ResponseEntity<?> createPermissions(@Valid @RequestBody CreatePermissionRequest request) throws Exception{
+        return ResponseEntity.status(HttpStatus.CREATED).body("User created successfully");
+    }
+
+    @PostMapping("/role-permissions")
+    public ResponseEntity<?> createRolePermissionMappings(@Valid @RequestBody RolePermissionMappingRequest request) throws Exception{
         return ResponseEntity.status(HttpStatus.CREATED).body("User created successfully");
     }
 }
