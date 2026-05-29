@@ -18,12 +18,12 @@ public class CreateUserRequest {
     @NotBlank(message = "mobile number is needed")
     private String mobileNumber;
 
-    @NotNull(message = "At-least one Role is required")
-    private Set<RoleConstants> role;
+    @NotBlank(message = "At-least one Role is required")
+    private Set<String> role;
 
     public CreateUserRequest(){}
 
-    public CreateUserRequest(String userName, String name, String password, String mobileNumber, Set<RoleConstants> role) {
+    public CreateUserRequest(String userName, String name, String password, String mobileNumber, Set<String> role) {
         this.userName = userName;
         this.name = name;
         this.password = password;
@@ -63,11 +63,11 @@ public class CreateUserRequest {
         this.mobileNumber = mobileNumber;
     }
 
-    public Set<RoleConstants> getRole() {
+    public Set<String> getRole() {
         return role;
     }
 
-    public void setRole(Set<RoleConstants> role) {
+    public void setRole(Set<String> role) {
         this.role = role;
     }
 }

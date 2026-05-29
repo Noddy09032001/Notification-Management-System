@@ -17,5 +17,5 @@ public interface RoleRepository extends JpaRepository<RoleData, Long> {
             @Param("roleName") RoleConstants roleName
     );
 
-    RoleData findByRoleName(RoleConstants roleName);
+    Optional<RoleData> findByRoleName(String roleName);
 }

@@ -15,8 +15,7 @@ public class RoleData {
     private Long id;
 
     @Column(name = "role_name", unique = true, nullable = false)
-    @Enumerated(EnumType.STRING)
-    private RoleConstants roleName;
+    private String roleName;
 
     @Column(name = "role_description")
     private String roleDescription;
@@ -35,7 +34,7 @@ public class RoleData {
 
     public RoleData(){}
 
-    public RoleData(Long id, RoleConstants roleName, String roleDescription, Set<PermissionsData> permissions) {
+    public RoleData(Long id, String roleName, String roleDescription, Set<PermissionsData> permissions) {
         this.id = id;
         this.roleName = roleName;
         this.roleDescription = roleDescription;
@@ -50,11 +49,11 @@ public class RoleData {
         this.id = id;
     }
 
-    public RoleConstants getRoleName() {
+    public String getRoleName() {
         return roleName;
     }
 
-    public void setRoleName(RoleConstants roleName) {
+    public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
 
