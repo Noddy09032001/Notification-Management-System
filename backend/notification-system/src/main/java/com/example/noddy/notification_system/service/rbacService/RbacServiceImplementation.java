@@ -3,8 +3,10 @@ package com.example.noddy.notification_system.service.rbacService;
 import com.example.noddy.notification_system.constants.RoleConstants;
 import com.example.noddy.notification_system.dto.request.*;
 import com.example.noddy.notification_system.dto.response.AuthResponse;
+import com.example.noddy.notification_system.pojo.PermissionsData;
 import com.example.noddy.notification_system.pojo.RoleData;
 import com.example.noddy.notification_system.pojo.UserData;
+import com.example.noddy.notification_system.repository.PermissionRepository;
 import com.example.noddy.notification_system.repository.RoleRepository;
 import com.example.noddy.notification_system.repository.UserDataRepository;
 import com.example.noddy.notification_system.service.jwtService.JwtServiceImplementation;
@@ -25,18 +27,20 @@ import java.util.Set;
 public class RbacServiceImplementation implements RbacService{
 
     private UserDataRepository userDataRepository;
-    private  PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
     private RoleRepository roleRepository;
+    private PermissionRepository permissionRepository;
     private JwtServiceImplementation jwtServiceImplementation;
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    public RbacServiceImplementation(UserDataRepository userDataRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository, JwtServiceImplementation jwtServiceImplementation, AuthenticationManager authenticationManager){
+    public RbacServiceImplementation(UserDataRepository userDataRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository, JwtServiceImplementation jwtServiceImplementation, AuthenticationManager authenticationManager, PermissionRepository permissionRepository){
         this.userDataRepository = userDataRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
         this.jwtServiceImplementation = jwtServiceImplementation;
         this.authenticationManager = authenticationManager;
+        this.permissionRepository = permissionRepository;
     }
 
     /**
@@ -108,7 +112,7 @@ public class RbacServiceImplementation implements RbacService{
             // checking for duplicate role entries
             RoleData existingRole = roleRepository.findByRoleName(request.getRoleName()).orElseThrow(() -> new RuntimeException("No such role exists"));
 
-            RoleData role = new RoleData();    // creating new role objects 
+            RoleData role = new RoleData();    // creating new role objects
             role.setRoleName(request.getRoleName());
             role.setRoleDescription(request.getRoleDescription());
 
@@ -122,6 +126,15 @@ public class RbacServiceImplementation implements RbacService{
     @Override
     public void createPermissions(CreatePermissionRequest request) throws Exception {
         try{
+    
+            // checking for duplicate permission entries
+            PermissionsData existingPermission = permissionRepository.findPermissionByPermissionName(request.getPermissionName()).orElseThrow(() -> new RuntimeException("No such permission exists"));
+
+            PermissionsData permission = new PermissionsData();    // creating new permission objects
+            permission.setPermissionName(request.getPermissionName());
+            permission.setPermissionDescription(request.getPermissionDescription());
+
+            permissionRepository.save(permission);   // saving the newly created permission
 
         } catch (Exception e) {
             throw new Exception(e.getMessage());
