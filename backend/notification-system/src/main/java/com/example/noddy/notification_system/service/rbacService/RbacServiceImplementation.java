@@ -68,8 +68,8 @@ public class RbacServiceImplementation implements RbacService{
 
             Set<RoleData> roleData = new HashSet<>();
 
-            for(RoleConstants roles : request.getRole()){
-                RoleData role = roleRepository.findByRoleName(roles);
+            for(String roles : request.getRole()){
+                RoleData role = roleRepository.findByRoleName(roles).orElseThrow(() -> new RuntimeException("No such role exists"));
                 roleData.add(role);
             }
 
@@ -91,7 +91,7 @@ public class RbacServiceImplementation implements RbacService{
         String token = jwtServiceImplementation.generateToken(user);
 
         // getting the user roles
-        List<String> roles = user.getRoles().stream().map(role -> role.getRoleName().name()).toList();
+        List<String> roles = user.getRoles().stream().map(role -> role.getRoleName()).toList();
 
        // getting the user permissions
         List<String> permissions = user.getRoles().stream().flatMap(role ->
@@ -104,6 +104,15 @@ public class RbacServiceImplementation implements RbacService{
     @Override
     public void createRole(CreateRoleRequest request) throws Exception {
         try{
+
+            // checking for duplicate role entries
+            RoleData existingRole = roleRepository.findByRoleName(request.getRoleName()).orElseThrow(() -> new RuntimeException("No such role exists"));
+
+            RoleData role = new RoleData();    // creating new role objects 
+            role.setRoleName(request.getRoleName());
+            role.setRoleDescription(request.getRoleDescription());
+
+            roleRepository.save(role);   // saving the newly created role
 
         } catch (Exception e) {
             throw new Exception(e.getMessage());
