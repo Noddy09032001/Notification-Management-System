@@ -4,6 +4,7 @@ import com.example.noddy.notification_system.constants.RoleConstants;
 import com.example.noddy.notification_system.dto.request.*;
 import com.example.noddy.notification_system.dto.response.AuthResponse;
 import com.example.noddy.notification_system.dto.response.RolePermissionMappingResponse;
+import com.example.noddy.notification_system.dto.response.UserProfileResponse;
 import com.example.noddy.notification_system.pojo.PermissionsData;
 import com.example.noddy.notification_system.pojo.RoleData;
 import com.example.noddy.notification_system.pojo.UserData;
@@ -204,6 +205,50 @@ public class RbacServiceImplementation implements RbacService{
         } catch (Exception e) {
             logger.info("Error during roles and permission mappings: {}", e.getMessage());
             throw new Exception(e);
+        }
+    }
+
+    @Override
+    public List<RoleData> getAllRoles() throws Exception {
+        logger.info("Inside the get all roles method - ");
+        try{
+            return roleRepository.findAll();
+        } catch (Exception e) {
+            logger.info("Error getting all the roles: {}", e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<PermissionsData> getAllPermissions() throws Exception {
+        logger.info("Inside the get all permissions method - ");
+        try{
+            return permissionRepository.findAll();
+        } catch (Exception e) {
+            logger.info("Error getting all the permissions: {}", e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public UserProfileResponse getUserProfileDetails(String username) throws Exception {
+        logger.info("Inside the get user profile details method - ");
+        try{
+            // getting the user details
+            UserData user = userDataRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+
+            UserProfileResponse response = new UserProfileResponse();
+            response.setName(user.getName());
+            response.setUsername(user.getUsername());
+            response.setRoles(user.getRoles());    // setting the roles
+
+            
+
+            return response;
+
+        } catch (Exception e) {
+            logger.info("Error getting user profile details: {}", e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 }
