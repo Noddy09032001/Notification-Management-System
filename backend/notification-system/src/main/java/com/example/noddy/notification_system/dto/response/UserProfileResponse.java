@@ -12,17 +12,15 @@ public class UserProfileResponse {
     private String name;
     private String username;
     private String email;
-    private Set<RoleData> roles;
-    private Set<PermissionsData> permissions;
+    private List<RolePermissionMappingResponse> associatedRolePermissions;
 
     public UserProfileResponse(){}
 
-    public UserProfileResponse(String name, String username, String email, Set<RoleData> roles, Set<PermissionsData> permissions) {
+    public UserProfileResponse(String name, String username, String email, List<RolePermissionMappingResponse> associatedRolePermissions) {
         this.name = name;
         this.username = username;
         this.email = email;
-        this.roles = roles;
-        this.permissions = permissions;
+        this.associatedRolePermissions = associatedRolePermissions;
     }
 
     public String getName() {
@@ -49,19 +47,11 @@ public class UserProfileResponse {
         this.email = email;
     }
 
-    public Set<RoleData> getRoles() {
-        return roles;
+    public List<RolePermissionMappingResponse> getAssociatedRolePermissions() {
+        return associatedRolePermissions;
     }
 
-    public void setRoles(Set<RoleData> roles) {
-        this.roles = roles;
-    }
-
-    public Set<PermissionsData> getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(Set<PermissionsData> permissions) {
-        this.permissions = permissions;
+    public void setAssociatedRolePermissions(List<RolePermissionMappingResponse> associatedRolePermissions) {
+        this.associatedRolePermissions = associatedRolePermissions;
     }
 }

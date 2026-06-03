@@ -240,9 +240,24 @@ public class RbacServiceImplementation implements RbacService{
             UserProfileResponse response = new UserProfileResponse();
             response.setName(user.getName());
             response.setUsername(user.getUsername());
-            response.setRoles(user.getRoles());    // setting the roles
 
-            
+            List<RolePermissionMappingResponse> associatedRolePermissions = new ArrayList<>();
+
+            // getting the permissions for the given roles
+            for(RoleData roleData : user.getRoles()){
+                RolePermissionMappingResponse rolePermissionMappingResponse = new RolePermissionMappingResponse();
+                rolePermissionMappingResponse.setRole(roleData.getRoleName());   // setting the role name
+
+                Set<PermissionsData> permissions = roleData.getPermissions();   // getting all the permissions for the given role
+                List<String> permissionNames = permissions.stream().
+                        map(permissionsData -> permissionsData.getPermissionName()).toList();   // getting all the permission names
+
+                rolePermissionMappingResponse.setPermissions(permissionNames);  // setting the permissions name
+
+                associatedRolePermissions.add(rolePermissionMappingResponse);   // adding to the list 
+            }
+
+            response.setAssociatedRolePermissions(associatedRolePermissions);   // setting the associated roles and permissions
 
             return response;
 
